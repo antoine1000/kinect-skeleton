@@ -11,7 +11,7 @@ Processing experiments 💭 around skeleton tracking 💀 with Kinect 📹
 - Blob Detection *by Julien Gachadoat*
 
 #References
-**Making Things see** by *Greg Borenstein*
+[**Making Things See**] (http://makingthingssee.com/) by *Greg Borenstein* 
 
 #Licence
 GNU 3.0
