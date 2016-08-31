@@ -1,28 +1,33 @@
 import SimpleOpenNI.*;
 SimpleOpenNI  kinect;
 
+// *** ENABLE FULL SCREEN ***
+boolean sketchFullScreen() {
+  return true;
+}
+
 void setup() {
-  size(1024, 768, P3D);
+  size(displayWidth, displayHeight, P3D);
   kinect = new SimpleOpenNI(this);
-// ----- kinect.setMirror MUST BE BEFORE enableDepth and enableUser functions !!! -----
-  kinect.setMirror(true);
+  // ----- kinect.setMirror MUST BE BEFORE enableDepth and enableUser functions !!! -----
+  // set to false because it interferates with fullscreen mapping
+  kinect.setMirror(false);
   kinect.enableDepth();
   kinect.enableUser();
-
- }
+}
 
 void draw() {
   kinect.update();
-  background(0);
   //image(kinect.depthImage(), 0, 0);
+  background(0);
 
   IntVector userList = new IntVector();
   kinect.getUsers(userList);
 
-//  if (userList.size() > 0) {
-//    int userId = userList.get(0);
+  //  if (userList.size() > 0) {
+  //    int userId = userList.get(0);
 
-// Search for an user and give him a UserId
+  // Search for an user and give him a UserId
   for (int i=0; i<userList.size (); i++) {
     int userId = userList.get(i);
 
@@ -32,10 +37,13 @@ void draw() {
   }
 }
 
-// ----- DRAW LIMBS -----
+// ----- DRAW SKELETON FUNCTION -----
+
 void drawSkeleton(int userId) {
-  noStroke();
-  //strokeWeight(5);
+
+  // *** DRAW LIMBS FUNCTION ***
+
+  strokeWeight(5);
   kinect.drawLimb(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);
   kinect.drawLimb(userId, SimpleOpenNI.SKEL_NECK, SimpleOpenNI.SKEL_LEFT_SHOULDER);
   kinect.drawLimb(userId, SimpleOpenNI.SKEL_LEFT_SHOULDER, SimpleOpenNI.SKEL_LEFT_ELBOW);
@@ -53,7 +61,9 @@ void drawSkeleton(int userId) {
   kinect.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_KNEE, SimpleOpenNI.SKEL_RIGHT_FOOT);
   kinect.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_LEFT_HIP);
 
-// ----- GET THE JOINTS POSITION -----
+
+  // *** DRAW EACH JOINTS ***
+
   //drawJoint(userId, SimpleOpenNI.SKEL_HEAD);
   drawJoint(userId, SimpleOpenNI.SKEL_NECK);
   drawJoint(userId, SimpleOpenNI.SKEL_LEFT_SHOULDER);
@@ -73,48 +83,61 @@ void drawSkeleton(int userId) {
   drawJoint(userId, SimpleOpenNI.SKEL_LEFT_HAND);
 }
 
-// ----- DRAW JOINTS -----
+// ----- GET JOINTS POSITION (AND DRAWING IT) FUNCTION -----
 void drawJoint(int userId, int jointID) {
   PVector joint = new PVector();
   float confidence = kinect.getJointPositionSkeleton(userId, jointID, joint);
-  if(confidence < 0.5){
+  if (confidence < 0.5) {
     return;
   }
+
   PVector convertedJoint = new PVector();
   kinect.convertRealWorldToProjective(joint, convertedJoint);
+
+  // *** Translation of kinect proportion to fullscreen proportions ***
+  float jointX = map(convertedJoint.x, 0, 640, displayWidth, 0);
+  float jointY = map(convertedJoint.y, 0, 480, 0, displayHeight);
+
+  // *** Graphic stuff ***
   noStroke();
   fill(109, 57, 255);
-  ellipse(convertedJoint.x, convertedJoint.y, 10, 10);
-  
-  //----- TRACK THE HEAD -----
+  ellipse(jointX, jointY, 10, 10);
+
+  // ----- TRACK THE HEAD -----
   PVector head = new PVector();
   kinect.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_HEAD, head);
   PVector convertedHead = new PVector();
   kinect.convertRealWorldToProjective(head, convertedHead);
+
+  // *** Translation of kinect proportion to fullscreen proportions ***
+  float headx = map(convertedHead.x, 0, 640, displayWidth, 0);
+  float heady = map(convertedHead.y, 0, 480, 0, displayHeight);
+
+  // *** Graphic stuff ***
   strokeWeight(5);
   stroke(109, 57, 255);
   noFill();
   ellipseMode(CENTER);
-  ellipse(convertedHead.x, convertedHead.y, 70, 70);
+  ellipse(headx, heady, 70, 70);
 }
 
 
 //-------------- CALLBACK -----------------
 
-void onNewUser(SimpleOpenNI curContext,int userId)
+void onNewUser(SimpleOpenNI curContext, int userId)
 {
   println("onNewUser - userId: " + userId);
   println("start tracking skeleton");
-  
+
   kinect.startTrackingSkeleton(userId);
 }
 
-void onLostUser(SimpleOpenNI curContext,int userId)
+void onLostUser(SimpleOpenNI curContext, int userId)
 {
   println("onLostUser - userId: " + userId);
 }
 
-void onVisibleUser(SimpleOpenNI curContext,int userId)
+void onVisibleUser(SimpleOpenNI curContext, int userId)
 {
   //println("onVisibleUser - userId: " + userId);
 }
