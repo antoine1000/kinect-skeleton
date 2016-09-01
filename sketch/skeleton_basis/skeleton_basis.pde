@@ -25,7 +25,7 @@ void draw() {
   kinect.getUsers(userList);
 
   //  if (userList.size() > 0) {
-  //    int userId = userList.get(0);
+  //  int userId = userList.get(0);
 
   // Search for an user and give him a UserId
   for (int i=0; i<userList.size (); i++) {
@@ -41,28 +41,28 @@ void draw() {
 
 void drawSkeleton(int userId) {
 
-  // *** DRAW LIMBS FUNCTION ***
-
+  // *** DRAW EACH LIMBS INDVIDUALLY ***
+  
   strokeWeight(5);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_NECK, SimpleOpenNI.SKEL_LEFT_SHOULDER);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_LEFT_SHOULDER, SimpleOpenNI.SKEL_LEFT_ELBOW);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_LEFT_ELBOW, SimpleOpenNI.SKEL_LEFT_HAND);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_NECK, SimpleOpenNI.SKEL_RIGHT_SHOULDER);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_SHOULDER, SimpleOpenNI.SKEL_RIGHT_ELBOW);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_ELBOW, SimpleOpenNI.SKEL_RIGHT_HAND);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_LEFT_SHOULDER, SimpleOpenNI.SKEL_TORSO);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_SHOULDER, SimpleOpenNI.SKEL_TORSO);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_TORSO, SimpleOpenNI.SKEL_LEFT_HIP);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_LEFT_HIP, SimpleOpenNI.SKEL_LEFT_KNEE);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_LEFT_KNEE, SimpleOpenNI.SKEL_LEFT_FOOT);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_TORSO, SimpleOpenNI.SKEL_RIGHT_HIP);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_RIGHT_KNEE);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_KNEE, SimpleOpenNI.SKEL_RIGHT_FOOT);
-  kinect.drawLimb(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_LEFT_HIP);
+  drawLimbs(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);
+  drawLimbs(userId, SimpleOpenNI.SKEL_NECK, SimpleOpenNI.SKEL_LEFT_SHOULDER);
+  drawLimbs(userId, SimpleOpenNI.SKEL_LEFT_SHOULDER, SimpleOpenNI.SKEL_LEFT_ELBOW);
+  drawLimbs(userId, SimpleOpenNI.SKEL_LEFT_ELBOW, SimpleOpenNI.SKEL_LEFT_HAND);
+  drawLimbs(userId, SimpleOpenNI.SKEL_NECK, SimpleOpenNI.SKEL_RIGHT_SHOULDER);
+  drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_SHOULDER, SimpleOpenNI.SKEL_RIGHT_ELBOW);
+  drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_ELBOW, SimpleOpenNI.SKEL_RIGHT_HAND);
+  drawLimbs(userId, SimpleOpenNI.SKEL_LEFT_SHOULDER, SimpleOpenNI.SKEL_TORSO);
+  drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_SHOULDER, SimpleOpenNI.SKEL_TORSO);
+  drawLimbs(userId, SimpleOpenNI.SKEL_TORSO, SimpleOpenNI.SKEL_LEFT_HIP);
+  drawLimbs(userId, SimpleOpenNI.SKEL_LEFT_HIP, SimpleOpenNI.SKEL_LEFT_KNEE);
+  drawLimbs(userId, SimpleOpenNI.SKEL_LEFT_KNEE, SimpleOpenNI.SKEL_LEFT_FOOT);
+  drawLimbs(userId, SimpleOpenNI.SKEL_TORSO, SimpleOpenNI.SKEL_RIGHT_HIP);
+  drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_RIGHT_KNEE);
+  drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_KNEE, SimpleOpenNI.SKEL_RIGHT_FOOT);
+  drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_LEFT_HIP);
 
 
-  // *** DRAW EACH JOINTS ***
+  // *** DRAW EACH JOINTS INDIVIDUALLY ***
 
   //drawJoint(userId, SimpleOpenNI.SKEL_HEAD);
   drawJoint(userId, SimpleOpenNI.SKEL_NECK);
@@ -83,7 +83,7 @@ void drawSkeleton(int userId) {
   drawJoint(userId, SimpleOpenNI.SKEL_LEFT_HAND);
 }
 
-// ----- GET JOINTS POSITION (AND DRAWING IT) FUNCTION -----
+// ----- "draw Joint" FUNCTION ---> get each joint position -----
 void drawJoint(int userId, int jointID) {
   PVector joint = new PVector();
   float confidence = kinect.getJointPositionSkeleton(userId, jointID, joint);
@@ -95,8 +95,8 @@ void drawJoint(int userId, int jointID) {
   kinect.convertRealWorldToProjective(joint, convertedJoint);
 
   // *** Translation of kinect proportion to fullscreen proportions ***
-  float jointX = map(convertedJoint.x, 0, 640, displayWidth, 0);
-  float jointY = map(convertedJoint.y, 0, 480, 0, displayHeight);
+  float jointX = map(convertedJoint.x, 0, 640, width, 0);
+  float jointY = map(convertedJoint.y, 0, 480, 0, height);
 
   // *** Graphic stuff ***
   noStroke();
@@ -110,8 +110,8 @@ void drawJoint(int userId, int jointID) {
   kinect.convertRealWorldToProjective(head, convertedHead);
 
   // *** Translation of kinect proportion to fullscreen proportions ***
-  float headx = map(convertedHead.x, 0, 640, displayWidth, 0);
-  float heady = map(convertedHead.y, 0, 480, 0, displayHeight);
+  float headx = map(convertedHead.x, 0, 640, width, 0);
+  float heady = map(convertedHead.y, 0, 480, 0, height);
 
   // *** Graphic stuff ***
   strokeWeight(5);
@@ -119,6 +119,36 @@ void drawJoint(int userId, int jointID) {
   noFill();
   ellipseMode(CENTER);
   ellipse(headx, heady, 70, 70);
+}
+
+
+
+// ----- "drawLimbs" FUNCTION -----
+// *** (I re-create the buit-in "drawLimb" function from SimpleOpenNI (for fullscreen purpose) ***
+void drawLimbs(int userId, int limbID1, int limbID2) {
+  PVector joint1 = new PVector();
+  PVector joint2 = new PVector();
+  float limb1 = kinect.getJointPositionSkeleton(userId, limbID1, joint1);
+  float limb2 = kinect.getJointPositionSkeleton(userId, limbID2, joint2);
+
+  PVector convertedJoint1 = new PVector();
+  PVector convertedJoint2 = new PVector();
+  kinect.convertRealWorldToProjective(joint1, convertedJoint1);
+  kinect.convertRealWorldToProjective(joint2, convertedJoint2);
+
+
+  // *** Translation of kinect proportion to fullscreen proportions ***
+  float limb1X = map(convertedJoint1.x, 0, 640, width, 0);
+  float limb1Y = map(convertedJoint1.y, 0, 480, 0, height);
+  float limb2X = map(convertedJoint2.x, 0, 640, width, 0);
+  float limb2Y = map(convertedJoint2.y, 0, 480, 0, height);
+  
+
+  // *** Graphic stuff (actually, draw the line from a joint to another) ***
+  stroke(109, 57, 255);
+  strokeWeight(5);
+  line(limb1X, limb1Y, limb2X, limb2Y);
+
 }
 
 
