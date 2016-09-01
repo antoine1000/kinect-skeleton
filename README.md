@@ -1,6 +1,9 @@
 # Kinect Skeleton Experiments
 Processing experiments 💭 around skeleton tracking 💀 with Kinect 📹
 
+![Dancing Skeleton](/data/skeleton_v1.gif)
+
+
 # Versions
 - Currently working with **Kinect v1 (Model 1414)** but I will add a **Kinect v2** version in the future.
 - Processing version : **2.2.1**
