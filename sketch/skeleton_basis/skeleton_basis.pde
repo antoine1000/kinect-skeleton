@@ -43,7 +43,6 @@ void drawSkeleton(int userId) {
 
   // *** DRAW EACH LIMBS INDVIDUALLY ***
   
-  strokeWeight(5);
   drawLimbs(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);
   drawLimbs(userId, SimpleOpenNI.SKEL_NECK, SimpleOpenNI.SKEL_LEFT_SHOULDER);
   drawLimbs(userId, SimpleOpenNI.SKEL_LEFT_SHOULDER, SimpleOpenNI.SKEL_LEFT_ELBOW);
@@ -83,7 +82,7 @@ void drawSkeleton(int userId) {
   drawJoint(userId, SimpleOpenNI.SKEL_LEFT_HAND);
 }
 
-// ----- "draw Joint" FUNCTION ---> get each joint position -----
+// ----- "draw Joint" FUNCTION ---> get each joint position, create an ellipse at this position -----
 void drawJoint(int userId, int jointID) {
   PVector joint = new PVector();
   float confidence = kinect.getJointPositionSkeleton(userId, jointID, joint);
@@ -123,7 +122,7 @@ void drawJoint(int userId, int jointID) {
 
 
 
-// ----- "drawLimbs" FUNCTION -----
+// ----- "drawLimbs" FUNCTION ---> create a line between two joints -----
 // *** (I re-create the buit-in "drawLimb" function from SimpleOpenNI (for fullscreen purpose) ***
 void drawLimbs(int userId, int limbID1, int limbID2) {
   PVector joint1 = new PVector();
@@ -152,7 +151,7 @@ void drawLimbs(int userId, int limbID1, int limbID2) {
 }
 
 
-//-------------- CALLBACK -----------------
+//-------------- CALLBACK (check if users are calibrated) -----------------
 
 void onNewUser(SimpleOpenNI curContext, int userId)
 {
