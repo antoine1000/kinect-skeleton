@@ -28,7 +28,7 @@ void draw() {
   //  int userId = userList.get(0);
 
   // Search for an user and give him a UserId
-  for (int i=0; i<userList.size (); i++) {
+  for (int i=0; i<userList.size(); i++) {
     int userId = userList.get(i);
 
     if ( kinect.isTrackingSkeleton(userId)) {
@@ -59,7 +59,7 @@ void drawSkeleton(int userId) {
   drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_RIGHT_KNEE);
   drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_KNEE, SimpleOpenNI.SKEL_RIGHT_FOOT);
   drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_LEFT_HIP);
-
+  
 
   // *** DRAW EACH JOINTS INDIVIDUALLY ***
 
@@ -81,75 +81,6 @@ void drawSkeleton(int userId) {
   drawJoint(userId, SimpleOpenNI.SKEL_RIGHT_HAND);
   drawJoint(userId, SimpleOpenNI.SKEL_LEFT_HAND);
 }
-
-// ----- "draw Joint" FUNCTION ---> get each joint position, create an ellipse at this position -----
-void drawJoint(int userId, int jointID) {
-  PVector joint = new PVector();
-  float confidence = kinect.getJointPositionSkeleton(userId, jointID, joint);
-  if (confidence < 0.5) {
-    return;
-  }
-
-  PVector convertedJoint = new PVector();
-  kinect.convertRealWorldToProjective(joint, convertedJoint);
-
-  // *** Translation of kinect proportion to fullscreen proportions ***
-  float jointX = map(convertedJoint.x, 0, 640, width, 0);
-  float jointY = map(convertedJoint.y, 0, 480, 0, height);
-
-  // *** Graphic stuff ***
-  noStroke();
-  fill(109, 57, 255);
-  ellipse(jointX, jointY, 10, 10);
-
-  // ----- TRACK THE HEAD -----
-  PVector head = new PVector();
-  kinect.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_HEAD, head);
-  PVector convertedHead = new PVector();
-  kinect.convertRealWorldToProjective(head, convertedHead);
-
-  // *** Translation of kinect proportion to fullscreen proportions ***
-  float headx = map(convertedHead.x, 0, 640, width, 0);
-  float heady = map(convertedHead.y, 0, 480, 0, height);
-
-  // *** Graphic stuff ***
-  strokeWeight(5);
-  stroke(109, 57, 255);
-  noFill();
-  ellipseMode(CENTER);
-  ellipse(headx, heady, 70, 70);
-}
-
-
-
-// ----- "drawLimbs" FUNCTION ---> create a line between two joints -----
-// *** (I re-create the buit-in "drawLimb" function from SimpleOpenNI (for fullscreen purpose) ***
-void drawLimbs(int userId, int limbID1, int limbID2) {
-  PVector joint1 = new PVector();
-  PVector joint2 = new PVector();
-  float limb1 = kinect.getJointPositionSkeleton(userId, limbID1, joint1);
-  float limb2 = kinect.getJointPositionSkeleton(userId, limbID2, joint2);
-
-  PVector convertedJoint1 = new PVector();
-  PVector convertedJoint2 = new PVector();
-  kinect.convertRealWorldToProjective(joint1, convertedJoint1);
-  kinect.convertRealWorldToProjective(joint2, convertedJoint2);
-
-
-  // *** Translation of kinect proportion to fullscreen proportions ***
-  float limb1X = map(convertedJoint1.x, 0, 640, width, 0);
-  float limb1Y = map(convertedJoint1.y, 0, 480, 0, height);
-  float limb2X = map(convertedJoint2.x, 0, 640, width, 0);
-  float limb2Y = map(convertedJoint2.y, 0, 480, 0, height);
-  
-
-  // *** Graphic stuff (actually, draw the line from a joint to another) ***
-  stroke(109, 57, 255);
-  strokeWeight(5);
-  line(limb1X, limb1Y, limb2X, limb2Y);
-
-}
-
 
 //-------------- CALLBACK (check if users are calibrated) -----------------
 
