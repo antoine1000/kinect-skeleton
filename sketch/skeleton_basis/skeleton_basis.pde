@@ -1,6 +1,8 @@
 import SimpleOpenNI.*;
 SimpleOpenNI  kinect;
 
+public static final int undefined = 0;
+
 // *** ENABLE FULL SCREEN ***
 boolean sketchFullScreen() {
   return true;
@@ -13,7 +15,10 @@ void setup() {
   // set to false because it interferates with fullscreen mapping
   kinect.setMirror(false);
   kinect.enableDepth();
+  // turn on user tracking
   kinect.enableUser();
+  
+  smooth();
 }
 
 void draw() {
@@ -23,18 +28,24 @@ void draw() {
 
   IntVector userList = new IntVector();
   kinect.getUsers(userList);
-
-  //  if (userList.size() > 0) {
-  //  int userId = userList.get(0);
-
   // Search for an user and give him a UserId
-  for (int i=0; i<userList.size(); i++) {
+  for (int i=0; i < userList.size(); i++) {
     int userId = userList.get(i);
 
     if ( kinect.isTrackingSkeleton(userId)) {
       drawSkeleton(userId);
     }
   }
+
+//  // If there is no more active users, but a shape is still assign to a user, the shape became "undefined" and disappear
+//  // In case of new entry or exit of users, shapes in the array became "undefined"
+//  for (int i=0; i < userList.size(); i++) {
+//    if (!kinect.isTrackingSkeleton(userId)) {
+//    drawSkeleton(userId) = null;
+//    }
+//  }
+  
+  
 }
 
 // ----- DRAW SKELETON FUNCTION -----
@@ -42,7 +53,7 @@ void draw() {
 void drawSkeleton(int userId) {
 
   // *** DRAW EACH LIMBS INDVIDUALLY ***
-  
+
   drawLimbs(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);
   drawLimbs(userId, SimpleOpenNI.SKEL_NECK, SimpleOpenNI.SKEL_LEFT_SHOULDER);
   drawLimbs(userId, SimpleOpenNI.SKEL_LEFT_SHOULDER, SimpleOpenNI.SKEL_LEFT_ELBOW);
@@ -59,7 +70,6 @@ void drawSkeleton(int userId) {
   drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_RIGHT_KNEE);
   drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_KNEE, SimpleOpenNI.SKEL_RIGHT_FOOT);
   drawLimbs(userId, SimpleOpenNI.SKEL_RIGHT_HIP, SimpleOpenNI.SKEL_LEFT_HIP);
-  
 
   // *** DRAW EACH JOINTS INDIVIDUALLY ***
 
@@ -80,6 +90,8 @@ void drawSkeleton(int userId) {
   drawJoint(userId, SimpleOpenNI.SKEL_RIGHT_FOOT);
   drawJoint(userId, SimpleOpenNI.SKEL_RIGHT_HAND);
   drawJoint(userId, SimpleOpenNI.SKEL_LEFT_HAND);
+  
+  
 }
 
 //-------------- CALLBACK (check if users are calibrated) -----------------
@@ -99,6 +111,6 @@ void onLostUser(SimpleOpenNI curContext, int userId)
 
 void onVisibleUser(SimpleOpenNI curContext, int userId)
 {
-  //println("onVisibleUser - userId: " + userId);
+  println("visibleUser with userID :  " + userId);
 }
 

@@ -36,6 +36,12 @@ void drawJoint(int userId, int jointID) {
   noFill();
   ellipseMode(CENTER);
   ellipse(headx, heady, 70, 70);
+  
+  // *** Display userId of each skeleton
+//  fill(0, 255, 0);
+//  textSize(60);
+//  text(userId, headx, heady);
+
 }
 
 
