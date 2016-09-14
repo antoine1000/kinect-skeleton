@@ -11,6 +11,7 @@ Provide a "starter kit" for Kinect *skeleton tracking*, and adding some cool fea
 - [ ] Faces, arms, legs... draw and projected on a skeleton 👹
 - [ ] A hand-drawer skeleton ✏️
 - [ ] A skeleton interacting with generate environment (or 3D objets) 🙌
+- [ ] Skeletons interacting with each others 💀👉💀
 
 ## Versions
 - Currently working with **Kinect v1 (Model 1414)** but I will add a **Kinect v2** version in the future.
