@@ -6,6 +6,13 @@
 // I re-create the 'kinect.drawLimb' function for fullscreen purpose
 // That's why it is called : 'drawLimbs' (with an 's')
 
+color[] userColor = new color[]{ color(109, 57, 255),
+                                     color(0,255,0),
+                                     color(0,0,255),
+                                     color(255, 0, 0)
+                                   };
+ 
+
 void drawLimbs(int userId, int limbID1, int limbID2) {
   PVector joint1 = new PVector();
   PVector joint2 = new PVector();
@@ -26,7 +33,10 @@ void drawLimbs(int userId, int limbID1, int limbID2) {
   
 
   // *** Graphic stuff (actually, draw the line from a joint to another) ***
-  stroke(109, 57, 255);
+      
+   
+  int couleur = (int)random(0, userColor.length);
+  stroke(userColor[couleur]);   
   strokeWeight(5);
   line(limb1X, limb1Y, limb2X, limb2Y);
 
