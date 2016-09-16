@@ -1,5 +1,5 @@
 # Kinect Skeleton Experiments
-Processing experiments 💭 around skeleton tracking 💀 with Kinect 📹
+<h3 align="center">Processing experiments 💭 around skeleton tracking 💀 with Kinect 📹</h3>
 
 ![Dancing Skeleton](/data/skeleton_v1.gif)
 
