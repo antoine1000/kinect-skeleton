@@ -39,13 +39,10 @@ void draw() {
 //      kinect.stopTrackingSkeleton(userId);
 //    }
   }
-
-//  // If there is no more active users, but a shape is still assign to a user, the shape became "undefined" and disappear
-//  // In case of new entry or exit of users, shapes in the array became "undefined"
-//  for (int i=0; i < userList.size(); i++) {
-//    if (!kinect.isTrackingSkeleton(userId)) {
-//    drawSkeleton(userId) = null;
-//    }
-//  }
   
+// ----- DEBBUGING MODE : tell the number of users (not necessarly tracked, visible by the kinect is enough)
+  int howMuch = kinect.getNumberOfUsers();
+  textSize(32);
+  fill(255, 0, 0);
+  text(howMuch, width - 100, 100);  
 }
