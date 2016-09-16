@@ -2,6 +2,7 @@ import SimpleOpenNI.*;
 SimpleOpenNI  kinect;
 
 public static final int undefined = 0;
+boolean visibleUser;
 
 // *** ENABLE FULL SCREEN ***
 boolean sketchFullScreen() {
@@ -19,7 +20,7 @@ void setup() {
   kinect.enableUser();
   
   smooth();
-}
+  }
 
 void draw() {
   kinect.update();
@@ -35,14 +36,23 @@ void draw() {
     if ( kinect.isTrackingSkeleton(userId)) {
       drawSkeleton(userId); 
     }
-//     else {
-//      kinect.stopTrackingSkeleton(userId);
-//    }
+     else {
+      textSize(32);
+      fill(255, 255, 0);
+      text("personne n'est tracké", width/2, height/2);    }
   }
   
-// ----- DEBBUGING MODE : tell the number of users (not necessarly tracked, visible by the kinect is enough)
-  int howMuch = kinect.getNumberOfUsers();
+// ----- DEBBUGING MODE : tell the number of users (not necessarly tracked but at least detect by the kinect)
+  int howMany = kinect.getNumberOfUsers();
   textSize(32);
   fill(255, 0, 0);
-  text(howMuch, width - 100, 100);  
+  text(howMany, width - 100, 100);  
+  
+  if(visibleUser) {
+  textSize(32);
+  fill(255, 0, 0);
+  text("someone's here", width/3, height/3);
+  }
 }
+
+
