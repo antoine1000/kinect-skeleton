@@ -3,8 +3,7 @@ SimpleOpenNI  kinect;
 
 public static final int undefined = 0;
 boolean visibleUser;
-// make this arrayList public
-ArrayList<IntVector> p_positions;
+float textPosition;
 
 // *** ENABLE FULL SCREEN ***
 boolean sketchFullScreen() {
@@ -20,20 +19,19 @@ void setup() {
   kinect.enableDepth();
   // turn on user tracking
   kinect.enableUser();
+
+// Choose the x position you want to display the debbuging informations
+  textPosition = width/1.5;
   
-  smooth();
-  
-// instantiate the arrayList
-  p_positions = new ArrayList<intVector>();
+  smooth();  
 }
 
 void draw() {
+
   kinect.update();
   background(0);
+// Display the depth image (Great for debugging purpose)
   image(kinect.depthImage(), 0, 0);
-
-  IntVector pPos = p_positions.get(userID); // currentPos de la frame précédente
-
 
   IntVector userList = new IntVector();
   kinect.getUsers(userList);
@@ -41,29 +39,30 @@ void draw() {
 // Search for an user and give him a UserId
   for (int i=0; i < userList.size(); i++) {
     int userId = userList.get(i);
-    PVector position = new PVector(); 
-    intVector currentUserPos = kinect.getCoM(userId, position);
-    p_positions.set(userId, currentUserPos);
     
     if ( kinect.isTrackingSkeleton(userId)) {
-      drawSkeleton(userId); 
+      drawSkeleton(userId);
+      textSize(32);
+      fill(0, 255, 0);
+      text("Someone is tracked!", textPosition, 150); 
     }
      else {
       textSize(32);
-      fill(255, 255, 0);
-      text("Nobody is tracked!", width/2, height/2);    }
+      fill(255, 0, 0);
+      text("Nobody is tracked...", textPosition, 150);    
+    }
   }
   
-// ----- DEBBUGING MODE : tell the number of users (not necessarly tracked but at least detect by the kinect)
+// ----- DEBUGGING MODE : tell the number of users (not necessarly tracked but at least detect by the kinect)
   int howMany = kinect.getNumberOfUsers();
   textSize(32);
-  fill(255, 0, 0);
-  text(howMany, width - 100, 100);  
+  fill(255);
+  text("Number of users = " + howMany, textPosition, 50);  
   
   if(visibleUser) {
   textSize(32);
-  fill(255, 0, 0);
-  text("someone's here", width/3, height/3);
+  fill(200, 200, 0);
+  text("Someone is in front of the Kinect", textPosition, 100);
   }
   
   
