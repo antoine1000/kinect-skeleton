@@ -44,7 +44,7 @@ void draw() {
       drawSkeleton(userId);
       textSize(32);
       fill(0, 255, 0);
-      text("Someone is tracked!", textPosition, 150); 
+      text("Tracking successful !", textPosition, 150); 
     }
      else {
       textSize(32);
@@ -61,8 +61,12 @@ void draw() {
   
   if(visibleUser) {
   textSize(32);
-  fill(200, 200, 0);
+  fill(175, 200, 255);
   text("Someone is in front of the Kinect", textPosition, 100);
+  } else {
+    textSize(32);
+    fill(255, 100, 0);
+    text("Nobody is in front of the Kinect...", textPosition, 100);
   }
   
   
