@@ -3,16 +3,19 @@
 
 
 
- /* ----------------------------*-*-*- drawLimbs function -*-*-*---------------------------- */
-// Note : Create a line between two joints
+/* ----------------------------*-*-*- drawLimbs function -*-*-*---------------------------- 
 
-// *** /!\ BE CAREFUL ! ***
-// This is NOT the 'kinect.drawLimb' BUILT-IN function from SimpleOpenNI
-// I re-create the 'kinect.drawLimb' function for fullscreen purpose
-// That's why it is called : 'drawLimbs' (with an 's')
+* Create a line between two joints
+
+* /!\ BE CAREFUL !
+* This is NOT the 'kinect.drawLimb' BUILT-IN function from SimpleOpenNI
+* I re-create the 'kinect.drawLimb' function for fullscreen purpose
+* That's why it is called : 'drawLimbs' (with an 's') 
+
+*/
 
   
-// 3 arguments --> userId, 1st limb and 2nd limb
+// * 3 arguments --> userId, 1st limb and 2nd limb
 void drawLimbs(int userId, int limbID1, int limbID2) {
 
   PVector joint1 = new PVector();
@@ -26,15 +29,15 @@ void drawLimbs(int userId, int limbID1, int limbID2) {
   kinect.convertRealWorldToProjective(joint2, convertedJoint2);
 
 
-  // *** Translation of kinect proportion to fullscreen proportions ***
+  // * Translation of kinect proportion to fullscreen proportions
   float limb1X = map(convertedJoint1.x, 0, 640, width, 0);
   float limb1Y = map(convertedJoint1.y, 0, 480, 0, height);
   float limb2X = map(convertedJoint2.x, 0, 640, width, 0);
   float limb2Y = map(convertedJoint2.y, 0, 480, 0, height);
   
 
-// *** Graphic stuff (actually, draw the line from a joint to another) ***
-// to define the stroke color, go check the main draw function, we set the stroke before the drawSkeleton function    
+/* Graphic stuff (actually, draw the line from a joint to another)
+ * To define the stroke color, go check the main draw function, we set the stroke before the drawSkeleton function  */  
   strokeWeight(5);
   line(limb1X, limb1Y, limb2X, limb2Y);
 
@@ -42,8 +45,11 @@ void drawLimbs(int userId, int limbID1, int limbID2) {
 
 
  
-/* ----------------------------*-*-*- drawJoint function -*-*-*---------------------------- */
-// Note : Get each joint position, create an ellipse at this position
+/* ----------------------------*-*-*- drawJoint function -*-*-*---------------------------- 
+
+ * Get each joint position, create an ellipse at this position 
+
+ */
 
 void drawJoint(int userId, int jointID) {
 
@@ -56,25 +62,28 @@ void drawJoint(int userId, int jointID) {
   PVector convertedJoint = new PVector();
   kinect.convertRealWorldToProjective(joint, convertedJoint);
 
-// *** Translation of kinect proportion to fullscreen proportions ***
+// * Translation of kinect proportion to fullscreen proportions
   float jointX = map(convertedJoint.x, 0, 640, 0, width);
   float jointY = map(convertedJoint.y, 0, 480, 0, height);
 
-// *** Graphic stuff ***
+// * Graphic stuff 
   noStroke();
   fill(255);
   ellipse(jointX, jointY, 25, 25);
-  
+
 }
 
 
 
-/* ----------------------------*-*-*- drawJoint function -*-*-*---------------------------- */
-// Note : Draw every joint and limbs with drawLimbs & drawJoint function
+/* ----------------------------*-*-*- drawSkeleton function -*-*-*---------------------------- 
+
+* Draw every joint and limbs with drawLimbs & drawJoint functions
+
+*/
 
 void drawSkeleton(int userId) {
   
-  // *** DRAW EACH LIMBS INDVIDUALLY ***
+  // * DRAW EACH LIMBS INDVIDUALLY
 
   drawLimbs(userId, SimpleOpenNI.SKEL_HEAD, SimpleOpenNI.SKEL_NECK);
   drawLimbs(userId, SimpleOpenNI.SKEL_NECK, SimpleOpenNI.SKEL_LEFT_SHOULDER);
@@ -95,8 +104,9 @@ void drawSkeleton(int userId) {
   
   drawHead(userId);
 
-  // *** DRAW EACH JOINTS INDIVIDUALLY ***
-  // By default, I comment these because I only want my limbs drawed
+  /* * DRAW EACH JOINTS INDIVIDUALLY
+
+   * By default, I comment these because I only want my limbs drawed */
 
 /*  drawJoint(userId, SimpleOpenNI.SKEL_HEAD);
     drawJoint(userId, SimpleOpenNI.SKEL_NECK);
@@ -120,22 +130,25 @@ void drawSkeleton(int userId) {
 }
 
 
- /* ----------------------------*-*-*- drawJoint function -*-*-*---------------------------- */
-// Note : Display the head with an ellipse (you can change by whatever you want)
+ /* ----------------------------*-*-*- drawHeadfunction -*-*-*---------------------------- 
+
+* Display the head with an ellipse (you can change it by whatever you want) 
+
+*/
 
  void drawHead(int userId) {
    
-// *** Track the head ***
+// * Track the head
   PVector head = new PVector();
   kinect.getJointPositionSkeleton(userId, SimpleOpenNI.SKEL_HEAD, head);
   PVector convertedHead = new PVector();
   kinect.convertRealWorldToProjective(head, convertedHead);
 
-// *** Translation of kinect proportion to fullscreen proportions ***
+// * Translation of kinect proportion to fullscreen proportions
   float headx = map(convertedHead.x, 0, 640, width, 0);
   float heady = map(convertedHead.y, 0, 480, 0, height);
 
-// *** Graphic stuff ***
+// * Graphic stuff 
   strokeWeight(5);
   noFill();
   ellipseMode(CENTER);
