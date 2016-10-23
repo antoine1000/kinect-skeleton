@@ -13,6 +13,7 @@ void displayInfo(boolean active) {
 */
   image(kinect.depthImage(), 0, 0);
   
+  
   int howMany = kinect.getNumberOfUsers();
   textSize(32);
   fill(255);

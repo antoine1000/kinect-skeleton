@@ -1,5 +1,6 @@
 /* *-*-*-*-*-* DRAWING THE SKELETON *-*-*-*-*-* */
-// Note : drawLimbs & drawJoint are designed for drawing each joint indivdually, drawSkeleton is the function which draw all the limbs/joints
+// Note : drawLimbs & drawJoint are designed for drawing each joint indivdually
+// drawSkeleton is the function which draw all the limbs/joints
 
 
 
@@ -37,7 +38,8 @@ void drawLimbs(int userId, int limbID1, int limbID2) {
   
 
 /* Graphic stuff (actually, draw the line from a joint to another)
- * To define the stroke color, go check the main draw function, we set the stroke before the drawSkeleton function  */  
+ * To define the stroke color, go check the main draw function
+ * We set the stroke before the drawSkeleton function  */  
   strokeWeight(5);
   line(limb1X, limb1Y, limb2X, limb2Y);
 
@@ -45,7 +47,7 @@ void drawLimbs(int userId, int limbID1, int limbID2) {
 
 
  
-/* ----------------------------*-*-*- drawJoint function -*-*-*---------------------------- 
+/* ----------------------------*-*-*- drawJoint function -*-*-*-------- 
 
  * Get each joint position, create an ellipse at this position 
 

@@ -10,7 +10,7 @@
 
 import SimpleOpenNI.*;
 
-SimpleOpenNI  kinect;
+SkeletonKinect  kinect;
 
 boolean visibleUser;
 float textPosition;
@@ -38,7 +38,7 @@ void setup() {
 
   size(displayWidth, displayHeight, P3D);
 
-  kinect = new SimpleOpenNI(this);
+  kinect = new SkeletonKinect(this);
 // * kinect.setMirror MUST BE BEFORE enableDepth and enableUser functions!!!
 // * Set to false because it interferates with fullscreen mapping */
   kinect.setMirror(false);
@@ -74,7 +74,7 @@ void draw() {
       displaySuccess(true);
     } else {      
 // * Set to false to turn off error tracking message
-      displayError(false);         
+      displayError(true);         
 // * Each time the tracking is lost, change the random color value for the next tracking   
       randomColor = (int)random(0, userColor.length); 
     }
