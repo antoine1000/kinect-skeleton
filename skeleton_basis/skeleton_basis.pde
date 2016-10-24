@@ -40,8 +40,7 @@ void setup() {
 
   kinect = new SkeletonKinect(this);
 // * kinect.setMirror MUST BE BEFORE enableDepth and enableUser functions!!!
-// * Set to false because it interferates with fullscreen mapping */
-  kinect.setMirror(false);
+  kinect.setMirror(true);
   kinect.enableDepth();
 // * Turn on user tracking
   kinect.enableUser();
@@ -69,7 +68,7 @@ void draw() {
 // * For every user, draw the skeleton
     if ( kinect.isTrackingSkeleton(userId)) {
       stroke(userColor[ randomColor ] );
-      drawSkeleton(userId);
+      kinect.drawSkeleton(userId);
 // * Set to false to turn off success tracking message      
       displaySuccess(true);
     } else {      
