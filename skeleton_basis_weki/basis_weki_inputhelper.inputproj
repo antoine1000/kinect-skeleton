@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<WekiInputHelperFileData>
+  <oscReceivePort>6448</oscReceivePort>
+  <oscSendPort>6449</oscSendPort>
+  <sendHostname>localhost</sendHostname>
+  <sendOscMessage>/wek/inputs</sendOscMessage>
+  <inputs>
+    <oscMessage>/wek/inputs</oscMessage>
+    <numInputs>6</numInputs>
+    <groupName>Inputs</groupName>
+    <inputNames>
+      <string>leftx</string>
+      <string>lefty</string>
+      <string>rightx</string>
+      <string>righty</string>
+      <string>headx</string>
+      <string>heady</string>
+    </inputNames>
+  </inputs>
+  <outputs>
+    <outputs class="linked-list">
+      <wekiinputhelper.Modifiers.ExpressionInput>
+        <name>leftX</name>
+        <expression class="expr.BinaryExpr">
+          <variablesUsed>
+            <string>leftx</string>
+            <string>headx</string>
+          </variablesUsed>
+          <rator>1</rator>
+          <rand0 class="expr.Variable">
+            <name>leftx</name>
+            <val>1167.835205078125</val>
+          </rand0>
+          <rand1 class="expr.Variable">
+            <name>headx</name>
+            <val>1546.48046875</val>
+          </rand1>
+        </expression>
+        <variables>
+          <expr.Variable reference="../../expression/rand0"/>
+          <expr.Variable reference="../../expression/rand1"/>
+        </variables>
+        <indexedVariables>
+          <wekiinputhelper.Modifiers.IndexedVar>
+            <originalVariable>leftx</originalVariable>
+            <unindexedName>leftx</unindexedName>
+            <delay>0</delay>
+          </wekiinputhelper.Modifiers.IndexedVar>
+          <wekiinputhelper.Modifiers.IndexedVar>
+            <originalVariable>headx</originalVariable>
+            <unindexedName>headx</unindexedName>
+            <delay>0</delay>
+          </wekiinputhelper.Modifiers.IndexedVar>
+        </indexedVariables>
+        <indexes>
+          <int>0</int>
+          <int>4</int>
+        </indexes>
+        <originalString>leftx - headx</originalString>
+        <buffersForInputs>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+        </buffersForInputs>
+      </wekiinputhelper.Modifiers.ExpressionInput>
+      <wekiinputhelper.Modifiers.ExpressionInput>
+        <name>leftY</name>
+        <expression class="expr.BinaryExpr">
+          <variablesUsed>
+            <string>heady</string>
+            <string>lefty</string>
+          </variablesUsed>
+          <rator>1</rator>
+          <rand0 class="expr.Variable">
+            <name>lefty</name>
+            <val>828.354248046875</val>
+          </rand0>
+          <rand1 class="expr.Variable">
+            <name>heady</name>
+            <val>-464.38043212890625</val>
+          </rand1>
+        </expression>
+        <variables>
+          <expr.Variable reference="../../expression/rand1"/>
+          <expr.Variable reference="../../expression/rand0"/>
+        </variables>
+        <indexedVariables>
+          <wekiinputhelper.Modifiers.IndexedVar>
+            <originalVariable>heady</originalVariable>
+            <unindexedName>heady</unindexedName>
+            <delay>0</delay>
+          </wekiinputhelper.Modifiers.IndexedVar>
+          <wekiinputhelper.Modifiers.IndexedVar>
+            <originalVariable>lefty</originalVariable>
+            <unindexedName>lefty</unindexedName>
+            <delay>0</delay>
+          </wekiinputhelper.Modifiers.IndexedVar>
+        </indexedVariables>
+        <indexes>
+          <int>5</int>
+          <int>1</int>
+        </indexes>
+        <originalString>lefty - heady</originalString>
+        <buffersForInputs>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+        </buffersForInputs>
+      </wekiinputhelper.Modifiers.ExpressionInput>
+      <wekiinputhelper.Modifiers.ExpressionInput>
+        <name>rightX</name>
+        <expression class="expr.BinaryExpr">
+          <variablesUsed>
+            <string>headx</string>
+            <string>rightx</string>
+          </variablesUsed>
+          <rator>1</rator>
+          <rand0 class="expr.Variable">
+            <name>rightx</name>
+            <val>1992.849853515625</val>
+          </rand0>
+          <rand1 class="expr.Variable" reference="../../../wekiinputhelper.Modifiers.ExpressionInput/expression/rand1"/>
+        </expression>
+        <variables>
+          <expr.Variable reference="../../../wekiinputhelper.Modifiers.ExpressionInput/expression/rand1"/>
+          <expr.Variable reference="../../expression/rand0"/>
+        </variables>
+        <indexedVariables>
+          <wekiinputhelper.Modifiers.IndexedVar>
+            <originalVariable>headx</originalVariable>
+            <unindexedName>headx</unindexedName>
+            <delay>0</delay>
+          </wekiinputhelper.Modifiers.IndexedVar>
+          <wekiinputhelper.Modifiers.IndexedVar>
+            <originalVariable>rightx</originalVariable>
+            <unindexedName>rightx</unindexedName>
+            <delay>0</delay>
+          </wekiinputhelper.Modifiers.IndexedVar>
+        </indexedVariables>
+        <indexes>
+          <int>4</int>
+          <int>2</int>
+        </indexes>
+        <originalString>rightx - headx</originalString>
+        <buffersForInputs>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+        </buffersForInputs>
+      </wekiinputhelper.Modifiers.ExpressionInput>
+      <wekiinputhelper.Modifiers.ExpressionInput>
+        <name>rightY</name>
+        <expression class="expr.BinaryExpr">
+          <variablesUsed>
+            <string>heady</string>
+            <string>righty</string>
+          </variablesUsed>
+          <rator>1</rator>
+          <rand0 class="expr.Variable">
+            <name>righty</name>
+            <val>571.038330078125</val>
+          </rand0>
+          <rand1 class="expr.Variable" reference="../../../wekiinputhelper.Modifiers.ExpressionInput[2]/expression/rand1"/>
+        </expression>
+        <variables>
+          <expr.Variable reference="../../../wekiinputhelper.Modifiers.ExpressionInput[2]/expression/rand1"/>
+          <expr.Variable reference="../../expression/rand0"/>
+        </variables>
+        <indexedVariables>
+          <wekiinputhelper.Modifiers.IndexedVar>
+            <originalVariable>heady</originalVariable>
+            <unindexedName>heady</unindexedName>
+            <delay>0</delay>
+          </wekiinputhelper.Modifiers.IndexedVar>
+          <wekiinputhelper.Modifiers.IndexedVar>
+            <originalVariable>righty</originalVariable>
+            <unindexedName>righty</unindexedName>
+            <delay>0</delay>
+          </wekiinputhelper.Modifiers.IndexedVar>
+        </indexedVariables>
+        <indexes>
+          <int>5</int>
+          <int>3</int>
+        </indexes>
+        <originalString>righty- heady</originalString>
+        <buffersForInputs>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+          <wekiinputhelper.Modifiers.CircularBuffer>
+            <length>1</length>
+          </wekiinputhelper.Modifiers.CircularBuffer>
+        </buffersForInputs>
+      </wekiinputhelper.Modifiers.ExpressionInput>
+    </outputs>
+    <numOutputTypes>4</numOutputTypes>
+    <dimensionality>4</dimensionality>
+    <hasDependencies>false</hasDependencies>
+  </outputs>
+  <inputTriggerer class="wekiinputhelper.TriggerOnReceive">
+    <c>
+      <type>NONE</type>
+      <howLong>ONCE</howLong>
+      <index>0</index>
+      <val>0.0</val>
+      <appliesTo>INPUT</appliesTo>
+    </c>
+  </inputTriggerer>
+  <isSendingOriginalInputs>true</isSendingOriginalInputs>
+</WekiInputHelperFileData>
