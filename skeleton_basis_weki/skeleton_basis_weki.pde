@@ -44,7 +44,8 @@ void setup() {
   f = loadFont("AlteDIN1451.vlw");
   textFont(f);
 
-  size(displayWidth, displayHeight, P3D);
+// remove 3PD render for this sketch because it cause a bug with DTW algorithm
+  size(displayWidth, displayHeight);
 
   kinect = new SkeletonKinect(this);
 // * kinect.setMirror MUST BE BEFORE enableDepth and enableUser functions!!!
@@ -58,8 +59,8 @@ void setup() {
   
   smooth();
 
-  /* instantiating oscP5, listening to OSC messages *coming* from port 9000 */
-  oscP5 = new OscP5(this, 9000);
+  /* instantiating oscP5, listening to OSC messages *coming* from port 12000 */
+  oscP5 = new OscP5(this, 12000);
 // Parameter #1 = your local IP adress (kinda like the postal adress of your computer) by default --> "127.0.0.1"
 // Parameter #2 = the port we *send* the message on (kinda like a specific mailbox at your postal adress)
   dest = new NetAddress("127.0.0.1", 6448);
@@ -95,7 +96,6 @@ void draw() {
 // Sending a message every two frames (if 30 images/s, it sends 15 OSC message a second)
       if(frameCount % 2 == 0) {
         sendOsc(userId);
-        startDTW();
       }
  }
  

@@ -49,20 +49,47 @@ void sendOsc(int userId) {
   oscP5.send(msg, dest);
 }
 
+int TIMEOUT = 3000;
+float lastTextDisplay = -TIMEOUT;
+
+
+//This is called automatically when OSC message is received
+void oscEvent(OscMessage theOscMessage) {
+ if (theOscMessage.checkAddrPattern("/cercle")==true) {
+    if(millis() - lastTextDisplay <= TIMEOUT) {
+        textSize(32);
+        fill(255, 0, 0);
+        text("Le geste = cercle", width/2, height/2); 
+      }
+
+ } else if (theOscMessage.checkAddrPattern("/clap")==true) {
+     textSize(32);
+     fill(255, 255, 0);
+     text("Le geste = clap", width/2, height/2); 
+     println("clap");
+ } else if (theOscMessage.checkAddrPattern("/coucou") == true) {
+     textSize(32);
+     fill(0, 255, 255);
+     text("Le geste = coucou", width/2, height/2); 
+     println("coucou");
+ } else {
+    println("Unknown OSC message received");
+ }
+}
+
+
+
 
 // Start and stop recording gesture with DTW algorithm
 void startDTW(){
   OscMessage start = new OscMessage("/wekinator/control/startDtwRecording");
-  start.add((int)1);
+  start.add((int)2);
   oscP5.send(start, dest);
 }
 
 void stopDTW() {
   OscMessage stop = new OscMessage("/wekinator/control/stopDtwRecording");
-  stop.add((int)1);
   oscP5.send(stop, dest2);
 }
-
-
 
 
