@@ -69,16 +69,19 @@ void draw() {
     KSkeleton skeleton3D = (KSkeleton) skeleton3DArray.get(i);
     if (skeleton3D.isTracked()) {
       KJoint[] joints3D = skeleton3D.getJoints();
-      float zzz = getZJoint(joints3D, KinectPV2.JointType_HandRight);
+
+      int hand_right = KinectPV2.JointType_HandRight;
+      float zzz = getZJoint(joints3D, hand_right);
 
 // Print the X, Y, Z positions of Skeleton 3D
       float xpos = joints3D[KinectPV2.JointType_HandRight].getX();
       float ypos = joints3D[KinectPV2.JointType_HandRight].getY();
       float zpos = joints3D[KinectPV2.JointType_HandRight].getZ();
       float convertZ = map(zpos, 0.5, 4, 0, 100);
+      float convertX = map(xpos, -1.5, 1.5, 0, width);
       textSize(80);
       fill(255);
-      text("3D Z = " + zpos , 50, height/4);
+      text("3D X = " + convertX + "3D Z = " + zpos , 50, height/4);
       fill(0, 255, 0);
       text("new Z = " + zzz, 50, height/5);
 

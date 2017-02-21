@@ -97,6 +97,6 @@ void handState(int handState) {
 
 float getZJoint(KJoint[] joints3D, int jointType) {
   float zpos = joints3D[jointType].getZ();
-  float convertZ = map(zpos, 0.5, 4, 0, 100);
+  float convertZ = map(zpos, 0.55, 4, 0, 100);
   return convertZ;
 }
