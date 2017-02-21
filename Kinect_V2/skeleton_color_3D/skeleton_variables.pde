@@ -1,39 +1,56 @@
 // Create constants variables for easier usage of joints
 
-// Skeleton joints
+// * Skeleton joints
+
+// Base
 int SPINE_BASE = KinectPV2.JointType_SpineBase;
 int SPINE_MID = KinectPV2.JointType_SpineMid;
 
+// Head
 int NECK = KinectPV2.JointType_Neck;
 int HEAD = KinectPV2.JointType_Head;
 
+// Left arm
 int SHOULDER_LEFT = KinectPV2.JointType_ShoulderLeft;
 int ELBOW_LEFT = KinectPV2.JointType_ElbowLeft;
 int WRIST_LEFT = KinectPV2.JointType_WristLeft;
 int HAND_LEFT = KinectPV2.JointType_HandLeft;
 
+// Right arm
 int SHOULDER_RIGHT = KinectPV2.JointType_ShoulderRight;
 int ELBOW_RIGHT = KinectPV2.JointType_ElbowRight;
 int WRIST_RIGHT = KinectPV2.JointType_WristRight;
 int HAND_RIGHT = KinectPV2.JointType_HandRight;
 
+// Left leg
 int HIP_LEFT = KinectPV2.JointType_HipLeft;
 int KNEE_LEFT = KinectPV2.JointType_KneeLeft;
 int ANKLE_LEFT = KinectPV2.JointType_AnkleLeft;
 int FOOT_LEFT = KinectPV2.JointType_FootLeft;
 
+// Right Leg
 int HIP_RIGHT = KinectPV2.JointType_HipRight;
 int KNEE_RIGHT = KinectPV2.JointType_KneeRight;
 int ANKLE_RIGHT = KinectPV2.JointType_AnkleRight;
 int FOOT_RIGHT = KinectPV2.JointType_FootRight;
 
+// Bonus
 int SPINE_SHOULDER = KinectPV2.JointType_SpineShoulder;
+
+// Left Hand details
 int HAND_TIP_LEFT = KinectPV2.JointType_HandTipLeft;
 int THUMB_LEFT = KinectPV2.JointType_ThumbLeft;
+
+// Right Hand details
 int HAND_TIP_RIGHT = KinectPV2.JointType_HandTipRight;
 int THUMB_RIGHT = KinectPV2.JointType_ThumbRight;
 
-// Handstate
+// * Skeleton tracking state
+int SKELETON_NOT_TRACKED = KinectPV2.TrackingState_NotTracked;
+int SKELETON_INFERRED = KinectPV2.TrackingState_Inferred;
+int SKELETON_TRACKED = KinectPV2.TrackingState_Tracked;
+
+// * Handstate
 int HAND_UNKNOWN = KinectPV2.HandState_Unknown;
 int HAND_NOT_TRACKED = KinectPV2.HandState_NotTracked;
 int HAND_OPEN = KinectPV2.HandState_Open;

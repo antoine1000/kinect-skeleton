@@ -31,8 +31,11 @@ void setup() {
 void draw() {
   background(0);
 
+// If you want to see the RGB image from HD Camera
   //image(kinect.getColorImage(), 0, 0, width, height);
 
+// Get the depth image data
+  //rawDepth = kinect.getDepthMaskImage();
 
 // Get the 2D data points from the Skeleton Color Map  
   ArrayList<KSkeleton> skeletonArray =  kinect.getSkeletonColorMap();
@@ -43,13 +46,12 @@ void draw() {
     if (skeleton.isTracked()) {
       KJoint[] joints = skeleton.getJoints();
 
-// Print the X, Y, Z positions of Skeleton Color
+// Print the X & Y positions of Skeleton Color
       float xpos = joints[KinectPV2.JointType_HandRight].getX();
       float ypos = joints[KinectPV2.JointType_HandRight].getY();
-      float zpos = joints[KinectPV2.JointType_HandRight].getZ();
       textSize(40);
       fill(0, 255, 0);
-      text("COLOR X = " + xpos + "/ COLOR Y = " + ypos + "/ COLOR Z = " + zpos , 50, height/2);
+      text("COLOR X = " + xpos + "/ COLOR Y = " + ypos, 50, height/2);
 
       color col  = skeleton.getIndexColor();
       fill(col);
@@ -57,8 +59,8 @@ void draw() {
       drawBody(joints);
 
       //draw different color for each hand state
-      drawHandState(joints[KinectPV2.JointType_HandRight]);
-      drawHandState(joints[KinectPV2.JointType_HandLeft]);
+      drawHandState(joints[HAND_LEFT]);
+      drawHandState(joints[HAND_RIGHT]);
     }
   }
 
@@ -70,18 +72,15 @@ void draw() {
     if (skeleton3D.isTracked()) {
       KJoint[] joints3D = skeleton3D.getJoints();
 
-      int hand_right = KinectPV2.JointType_HandRight;
-      float zzz = getZJoint(joints3D, hand_right);
+      
+      float zzz = getZJoint(joints3D, HAND_RIGHT);
 
 // Print the X, Y, Z positions of Skeleton 3D
-      float xpos = joints3D[KinectPV2.JointType_HandRight].getX();
-      float ypos = joints3D[KinectPV2.JointType_HandRight].getY();
-      float zpos = joints3D[KinectPV2.JointType_HandRight].getZ();
+      float zpos = joints3D[HAND_RIGHT].getZ();
       float convertZ = map(zpos, 0.5, 4, 0, 100);
-      float convertX = map(xpos, -1.5, 1.5, 0, width);
       textSize(80);
       fill(255);
-      text("3D X = " + convertX + "3D Z = " + zpos , 50, height/4);
+      text("3D Z = " + zpos , 50, height/4);
       fill(0, 255, 0);
       text("new Z = " + zzz, 50, height/5);
 
