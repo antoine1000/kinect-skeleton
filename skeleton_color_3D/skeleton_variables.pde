@@ -1,35 +1,44 @@
+// Create constants variables for easier usage of joints
 
-int spine_base = KinectPV2.JointType_SpineBase;
-int spine_mid = KinectPV2.JointType_SpineMid;
+// Skeleton joints
+int SPINE_BASE = KinectPV2.JointType_SpineBase;
+int SPINE_MID = KinectPV2.JointType_SpineMid;
 
-int neck = KinectPV2.JointType_Neck;
-int head = KinectPV2.JointType_Head;
+int NECK = KinectPV2.JointType_Neck;
+int HEAD = KinectPV2.JointType_Head;
 
-int shoulder_left = KinectPV2.JointType_ShoulderLeft;
-int elbow_left = KinectPV2.JointType_ElbowLeft;
-int wrist_left = KinectPV2.JointType_WristLeft;
-int hand_left = KinectPV2.JointType_HandLeft;
+int SHOULDER_LEFT = KinectPV2.JointType_ShoulderLeft;
+int ELBOW_LEFT = KinectPV2.JointType_ElbowLeft;
+int WRIST_LEFT = KinectPV2.JointType_WristLeft;
+int HAND_LEFT = KinectPV2.JointType_HandLeft;
 
-int shoulder_right = KinectPV2.JointType_ShoulderRight;
-int elbow_right = KinectPV2.JointType_ElbowRight;
-int wrist_right = KinectPV2.JointType_WristRight;
-int hand_right = KinectPV2.JointType_HandRight;
+int SHOULDER_RIGHT = KinectPV2.JointType_ShoulderRight;
+int ELBOW_RIGHT = KinectPV2.JointType_ElbowRight;
+int WRIST_RIGHT = KinectPV2.JointType_WristRight;
+int HAND_RIGHT = KinectPV2.JointType_HandRight;
 
-int hip_left = KinectPV2.JointType_HipLeft;
-int knee_left = KinectPV2.JointType_KneeLeft;
-int ankle_left = KinectPV2.JointType_AnkleLeft;
-int foot_left = KinectPV2.JointType_FootLeft;
+int HIP_LEFT = KinectPV2.JointType_HipLeft;
+int KNEE_LEFT = KinectPV2.JointType_KneeLeft;
+int ANKLE_LEFT = KinectPV2.JointType_AnkleLeft;
+int FOOT_LEFT = KinectPV2.JointType_FootLeft;
 
-int hip_right = KinectPV2.JointType_HipRight;
-int knee_right = KinectPV2.JointType_KneeRight;
-int ankle_right = KinectPV2.JointType_AnkleRight;
-int foot_right = KinectPV2.JointType_FootRight;
+int HIP_RIGHT = KinectPV2.JointType_HipRight;
+int KNEE_RIGHT = KinectPV2.JointType_KneeRight;
+int ANKLE_RIGHT = KinectPV2.JointType_AnkleRight;
+int FOOT_RIGHT = KinectPV2.JointType_FootRight;
 
-int spine_shoulder = KinectPV2.JointType_SpineShoulder;
-int hand_tip_left = KinectPV2.JointType_HandTipLeft;
-int thumb_left = KinectPV2.JointType_ThumbLeft;
-int hand_tip_right = KinectPV2.JointType_HandTipRight;
-int thumb_right = KinectPV2.JointType_ThumbRight;
+int SPINE_SHOULDER = KinectPV2.JointType_SpineShoulder;
+int HAND_TIP_LEFT = KinectPV2.JointType_HandTipLeft;
+int THUMB_LEFT = KinectPV2.JointType_ThumbLeft;
+int HAND_TIP_RIGHT = KinectPV2.JointType_HandTipRight;
+int THUMB_RIGHT = KinectPV2.JointType_ThumbRight;
+
+// Handstate
+int HAND_UNKNOWN = KinectPV2.HandState_Unknown;
+int HAND_NOT_TRACKED = KinectPV2.HandState_NotTracked;
+int HAND_OPEN = KinectPV2.HandState_Open;
+int HAND_CLOSED = KinectPV2.HandState_Closed;
+int HAND_LASSO = KinectPV2.HandState_Lasso;
 
 
 /* For Reference (from library source)
