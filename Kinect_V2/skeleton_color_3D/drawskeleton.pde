@@ -56,8 +56,9 @@ void drawJoint(KJoint[] joints, int jointType) {
 void drawBone(KJoint[] joints, int jointType1, int jointType2) {
   pushMatrix();
   translate(joints[jointType1].getX(), joints[jointType1].getY(), joints[jointType1].getZ());
-  ellipse(0, 0, 25, 25);
+  //ellipse(0, 0, 25, 25);
   popMatrix();
+  strokeWeight(10);
   line(joints[jointType1].getX(), joints[jointType1].getY(), joints[jointType1].getZ(), joints[jointType2].getX(), joints[jointType2].getY(), joints[jointType2].getZ());
 }
 
@@ -95,11 +96,11 @@ void handState(int handState) {
   }
 }
 
-float getZJoint(KJoint[] joints3D, int jointType) {
-  float zpos = joints3D[jointType].getZ();
+public float getZJoint(KJoint[] joints3D, int jointType) {
+  //float zpos = joints3D[jointType].getZ();
 /* Convert from 0.5 and 4.5 because 0.5 meter is the minimum distance 
 for the Kinect to get data and 4.5 meters is the maximum distance */
-  float convertZ = map(zpos, 0.57, 4.5, 0, 100);
+  float convertZ = map(joints3D[jointType].getZ(), 0.57, 4.5, 0, 100);
   return convertZ;
 }
 
